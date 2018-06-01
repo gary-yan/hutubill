@@ -50,7 +50,7 @@ public class Test {
 							cpb.setProgress(i);
 							cpb.setForegroundColor(ColorUtil.getByPercentage(i));
 						try {
-							Thread.sleep(1000);
+							Thread.sleep(100);
 						}catch (InterruptedException e1) {
 							e1.printStackTrace();
 						}
