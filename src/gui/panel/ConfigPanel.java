@@ -8,6 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
  
+import gui.listener.ConfigListener;
 import util.ColorUtil;
 import util.GUIUtil;
  
@@ -38,16 +39,22 @@ public class ConfigPanel extends JPanel {
         pInput.add(tfBudget);
         pInput.add(lMysql);
         pInput.add(tfMysqlPath);
+        
+        pSubmit.add(bSubmit);
+        
         this.setLayout(new BorderLayout());
         this.add(pInput,BorderLayout.NORTH);
-         
-        pSubmit.add(bSubmit);
         this.add(pSubmit,BorderLayout.CENTER);
+        addListener();
          
     }
- 
     public static void main(String[] args) {
         GUIUtil.showPanel(ConfigPanel.instance);
+    }
+     
+    public void addListener() {
+        ConfigListener l =new ConfigListener();
+        bSubmit.addActionListener(l);
     }
      
 }

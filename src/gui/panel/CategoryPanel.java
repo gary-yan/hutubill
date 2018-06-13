@@ -7,7 +7,9 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
  
+import entity.Category;
 import gui.model.CategoryTableModel;
+import service.CategoryService;
 import util.ColorUtil;
 import util.GUIUtil;
 
@@ -38,6 +40,30 @@ public class CategoryPanel extends JPanel {
 		this.add(sp, BorderLayout.CENTER);
 		this.add(pSubmit, BorderLayout.SOUTH);
 	}
+	//后加
+	//为CategoryPanel新增加一个getSelectedCategory，方便获取JTable上当前选中的Category对象
+	public Category getSelectedCategory() {
+		int index = t.getSelectedRow();
+		return ctm.cs.get(index);
+	}
+	//后加
+	//. 增加一个updateData方法，用于在增加，删除，和修改之后，更新表格中的信息，并默认选中第一行。 
+	//除此之外，还进行判断，如果表格里没有数据，删除和修改按钮不可使用。
+	public void updateData() {
+		ctm.cs = new CategoryService().list();
+		t.updateUI();
+		t.getSelectionModel().setSelectionInterval(0,0);
+		
+		if(0 == ctm.cs.size()) {
+			bEdit.setEnabled(false);
+			bDelete.setEnabled(false);
+		}
+		else {
+			bEdit.setEnabled(true);
+			bDelete.setEnabled(true);
+		}
+	}
+	
 	public static void main(String[] args) {
 		GUIUtil.showPanel(CategoryPanel.instance);
 	}
