@@ -41,7 +41,6 @@ public class CategoryPanel extends JPanel {
 		this.add(pSubmit, BorderLayout.SOUTH);
 	}
 	//后加
-	//为CategoryPanel新增加一个getSelectedCategory，方便获取JTable上当前选中的Category对象
 	public Category getSelectedCategory() {
 		int index = t.getSelectedRow();
 		return ctm.cs.get(index);
