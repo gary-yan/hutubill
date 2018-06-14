@@ -8,6 +8,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
  
 import entity.Category;
+import gui.listener.CategoryListener;
 import gui.model.CategoryTableModel;
 import service.CategoryService;
 import util.ColorUtil;
@@ -37,10 +38,13 @@ public class CategoryPanel extends JPanel {
 		pSubmit.add(bEdit);
 		pSubmit.add(bDelete);
 		
+		this.setLayout(new BorderLayout());
 		this.add(sp, BorderLayout.CENTER);
 		this.add(pSubmit, BorderLayout.SOUTH);
+		
+		addListener();
 	}
-	//后加
+	//后加为CategoryPanel新增加一个getSelectedCategory，方便获取JTable上当前选中的Category对象
 	public Category getSelectedCategory() {
 		int index = t.getSelectedRow();
 		return ctm.cs.get(index);
@@ -67,5 +71,10 @@ public class CategoryPanel extends JPanel {
 		GUIUtil.showPanel(CategoryPanel.instance);
 	}
 
-	
+	public void addListener() {
+		CategoryListener listener = new CategoryListener();
+		bAdd.addActionListener(listener);
+		bEdit.addActionListener(listener);
+		bDelete.addActionListener(listener);
+	}
 }
