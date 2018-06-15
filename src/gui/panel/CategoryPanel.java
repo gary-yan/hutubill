@@ -14,7 +14,7 @@ import service.CategoryService;
 import util.ColorUtil;
 import util.GUIUtil;
 
-public class CategoryPanel extends JPanel {
+public class CategoryPanel extends WorkingPanel {
 	static {
 		GUIUtil.useLNF();
 	}
