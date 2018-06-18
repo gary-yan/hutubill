@@ -9,6 +9,8 @@ import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import gui.panel.WorkingPanel;
+
 public class CenterPanel extends JPanel {
 	private double rate;//拉伸比例
 	private JComponent c;//显示的组件
@@ -46,6 +48,10 @@ public class CenterPanel extends JPanel {
 			remove(c);
 		}
 		add(p);
+		
+		if(p instanceof WorkingPanel)
+			((WorkingPanel) p).updateData();
+		
 		this.updateUI();
 	}
 	public static void main(String[] args) {

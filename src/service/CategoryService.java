@@ -17,7 +17,7 @@ public class CategoryService {
 		List<Category> cs = categoryDao.list();
 		for(Category c : cs) {
 			List<Record> rs = recordDao.list(c.id);
-			c.recordNumber = rs.size(); //rs记录每一个id siz反应出id的个数
+			c.recordNumber = rs.size(); //rs记录每一个id size反应出id的个数
 		}
 		Collections.sort(cs, (c1,c2)->c2.recordNumber-c1.recordNumber);//lambda表达式
 		return cs;
